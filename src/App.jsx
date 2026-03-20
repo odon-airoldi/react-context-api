@@ -9,6 +9,7 @@ import './App.css'
 import Home from './pages/Home'
 import AboutUs from './pages/AboutUs'
 import Products from './pages/Products'
+import AppLayout from './layouts/AppLayout'
 
 function App() {
 
@@ -16,9 +17,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/products" element={<Products />} />
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/products" element={<Products />} />
+          </Route>
         </Routes>
       </BrowserRouter>
 
