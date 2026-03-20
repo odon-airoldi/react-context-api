@@ -3,7 +3,9 @@ export default function Products() {
     return (
         <>
             <main>
-                Products
+                <div className="container py-5">
+                    Products
+                </div>
             </main>
         </>
     )
