@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-
-
+import { newtonsCradle } from 'ldrs'
+newtonsCradle.register()
 
 export default function Product() {
 
@@ -20,11 +20,8 @@ export default function Product() {
                 setProduct(data)
             })
             .catch(err => {
-                navigate('/error404')
-            }
-
-            )
-
+                navigate('/products')
+            })
     }, [])
 
 
@@ -32,9 +29,10 @@ export default function Product() {
     return (
 
         <div className="container py-5">
-            {product === null && 'Pagina non trovata'}
+            {product === null && <l-newtons-cradle size="78" speed="1.4" color="black"></l-newtons-cradle>}
 
-            {product !== null &&
+            {
+                product !== null &&
                 <div className="row g-5">
                     <div className="col-4">
                         <div className="">
@@ -49,7 +47,7 @@ export default function Product() {
                     </div>
                 </div>
             }
-        </div>
+        </div >
 
     )
 
