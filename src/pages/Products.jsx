@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { NavLink, Link } from 'react-router-dom'
+
 
 export default function Products() {
 
@@ -16,8 +18,7 @@ export default function Products() {
             })
     }, [])
 
-    console.log(products)
-
+    // console.log(products)
 
     return (
         <>
@@ -31,13 +32,13 @@ export default function Products() {
 
                                 <div className="" key={product.id}>
                                     <div className="card h-100">
-                                        <div className="ratio ratio-1x1">
+                                        <Link to={`/products/${product.id}`} className="ratio ratio-1x1">
                                             <img src={product.image} className="card-img-top object-fit-contain img-fluid p-3" alt={product.title} />
-                                        </div>
+                                        </Link>
                                         <div className="card-body">
                                             <h5 className="card-title">{product.title}</h5>
                                             <p className="card-text">{product.description.slice(0, 80)}...</p>
-                                            <a href="#" className="btn btn-primary">buy {product.price} €</a>
+                                            <Link to={`/products/${product.id}`} className="btn btn-primary">buy for {product.price} €</Link>
                                         </div>
                                     </div>
                                 </div>
