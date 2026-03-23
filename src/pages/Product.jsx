@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 
@@ -7,6 +7,7 @@ export default function Product() {
 
     const [product, setProduct] = useState(null)
     const { id } = useParams()
+    const navigate = useNavigate()
     const api_product = `https://fakestoreapi.com/products/${id}`
 
     // console.log(id)
@@ -18,6 +19,11 @@ export default function Product() {
             .then(data => {
                 setProduct(data)
             })
+            .catch(err => {
+                navigate('/error404')
+            }
+
+            )
 
     }, [])
 
