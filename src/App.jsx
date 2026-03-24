@@ -17,7 +17,12 @@ function App() {
   const [budgetMode, setBudgetMode] = useState(false)
 
   function clickBudgetMode() {
-    setBudgetMode(true)
+    if (budgetMode === false) {
+      setBudgetMode(true)
+    } else {
+      setBudgetMode(false)
+    }
+
   }
 
   return (

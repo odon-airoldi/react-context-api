@@ -5,14 +5,15 @@ import BudgetContext from '../context/BudgetContext'
 
 export default function Products() {
 
-    const { nome } = useContext(BudgetContext)
+    const { budgetMode } = useContext(BudgetContext)
 
-    console.log(nome)
 
     const api_products = 'https://fakestoreapi.com/products'
 
     const [products, setProducts] = useState(null)
     const navigate = useNavigate()
+
+
 
     useEffect(() => {
         fetch(api_products)
@@ -38,22 +39,24 @@ export default function Products() {
                         <div className="row row-cols-4 g-3">
 
                             {
-                                products.map(product => (
+                                products
+                                    .filter(product => product.price <= (budgetMode === true ? 30 : 1000))
+                                    .map(product => (
 
-                                    <div className="" key={product.id}>
-                                        <div className="card h-100">
-                                            <Link to={`/products/${product.id}`} className="ratio ratio-1x1">
-                                                <img src={product.image} className="card-img-top object-fit-contain img-fluid p-3" alt={product.title} />
-                                            </Link>
-                                            <div className="card-body">
-                                                <h5 className="card-title">{product.title}</h5>
-                                                <p className="card-text">{product.description.slice(0, 80)}...</p>
-                                                <Link to={`/products/${product.id}`} className="btn btn-primary">buy for {product.price} €</Link>
+                                        <div className="" key={product.id}>
+                                            <div className="card h-100">
+                                                <Link to={`/products/${product.id}`} className="ratio ratio-1x1">
+                                                    <img src={product.image} className="card-img-top object-fit-contain img-fluid p-3" alt={product.title} />
+                                                </Link>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{product.title}</h5>
+                                                    <p className="card-text">{product.description.slice(0, 80)}...</p>
+                                                    <Link to={`/products/${product.id}`} className="btn btn-primary">buy for {product.price} €</Link>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                ))
+                                    ))
                             }
 
                         </div>
