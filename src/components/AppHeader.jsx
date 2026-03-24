@@ -1,6 +1,14 @@
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import BudgetContext from '../context/BudgetContext'
+
 
 export default function AppHeader() {
+
+    const { budgetMode, clickBudgetMode } = useContext(BudgetContext)
+
+    console.log(budgetMode)
+
 
     const header_nav = [
         {
@@ -37,6 +45,9 @@ export default function AppHeader() {
                                     <li className="nav-item" key={navlink.id}><NavLink className="nav-link" to={navlink.path}>{navlink.text}</NavLink></li>
                                 ))
                             }
+                            <li className="nav-item">
+                                <button className="btn" onClick={clickBudgetMode}>{budgetMode === false ? 'Attiva' : 'Disattiva'} Modalità Budget</button>
+                            </li>
                         </ul>
                     </div>
                 </div>

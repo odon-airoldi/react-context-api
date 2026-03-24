@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import BudgetContext from './context/BudgetContext'
+import { useState } from 'react'
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import './App.css'
@@ -12,8 +14,18 @@ import AppLayout from './layouts/AppLayout'
 
 function App() {
 
+  const [budgetMode, setBudgetMode] = useState(false)
+
+  function clickBudgetMode() {
+    setBudgetMode(true)
+  }
+
   return (
-    <>
+    <BudgetContext.Provider value={
+      {
+        budgetMode, setBudgetMode, clickBudgetMode
+      }
+    }>
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -26,8 +38,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-
-    </>
+    </BudgetContext.Provider>
   )
 }
 

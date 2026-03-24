@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import BudgetContext from '../context/BudgetContext'
 
 
 export default function Products() {
+
+    const { nome } = useContext(BudgetContext)
+
+    console.log(nome)
 
     const api_products = 'https://fakestoreapi.com/products'
 
