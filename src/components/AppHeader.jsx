@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import BudgetContext from '../context/BudgetContext'
+import { useBudget } from '../context/BudgetContext'
 
 
 export default function AppHeader() {
 
-    const { budgetMode, clickBudgetMode } = useContext(BudgetContext)
+    const { budgetMode, clickBudgetMode } = useBudget()
 
     console.log(budgetMode)
 

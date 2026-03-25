@@ -1,9 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import BudgetContext from './context/BudgetContext'
-import { useState } from 'react'
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import './App.css'
 import Home from './pages/Home'
 import AboutUs from './pages/AboutUs'
 import Products from './pages/Products'
@@ -12,25 +9,17 @@ import Category from './pages/Category'
 import Error404 from './pages/Error404'
 import AppLayout from './layouts/AppLayout'
 
+import { BudgetProvider } from './context/BudgetContext'
+
+
+
 function App() {
 
-  const [budgetMode, setBudgetMode] = useState(false)
 
-  function clickBudgetMode() {
-    if (budgetMode === false) {
-      setBudgetMode(true)
-    } else {
-      setBudgetMode(false)
-    }
 
-  }
 
   return (
-    <BudgetContext.Provider value={
-      {
-        budgetMode, setBudgetMode, clickBudgetMode
-      }
-    }>
+    <BudgetProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -43,7 +32,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </BudgetContext.Provider>
+    </BudgetProvider>
   )
 }
 
